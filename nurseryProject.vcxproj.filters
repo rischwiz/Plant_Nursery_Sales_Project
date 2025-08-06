@@ -15,39 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\nurseryProgram\User_Interface.h">
+    <ClInclude Include="Sales_Controller_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\nurseryProgram\Staff_Controller_Class.h">
+    <ClInclude Include="Cutomer_Controller_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\nurseryProgram\Species_Controller_Class.h">
+    <ClInclude Include="Species_Controller_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\nurseryProgram\Sales_Controller_Class.h">
+    <ClInclude Include="Staff_Controller_Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\nurseryProgram\Cutomer_Controller_Class.h">
+    <ClInclude Include="User_Interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\nurseryProgram\User_Interface.cpp">
+    <ClCompile Include="Sales_Controller_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\nurseryProgram\Staff_Controller_Class.cpp">
+    <ClCompile Include="Cutomer_Controller_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\nurseryProgram\Species_Controller_Class.cpp">
+    <ClCompile Include="Species_Controller_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\nurseryProgram\Sales_Controller_Class.cpp">
+    <ClCompile Include="Staff_Controller_Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\nurseryProgram\main.cpp">
+    <ClCompile Include="User_Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\nurseryProgram\Cutomer_Controller_Class.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
