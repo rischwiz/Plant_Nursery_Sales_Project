@@ -4,6 +4,15 @@
 #include <chrono>
 
 using namespace std;
+/*
+===============================================================
+Name of Artifact  : Date Structure
+Brief Description : Structure we use in our code to hold a date
+					[month, day, year]
+Coder Name        : Emmanuel 
+Date              : 08/07/2025
+===============================================================
+*/
 
 // Date class to grab the current date and time
 struct date {
