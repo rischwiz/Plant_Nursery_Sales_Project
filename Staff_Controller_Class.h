@@ -5,6 +5,19 @@
 using namespace std;
 
 
+/*
+===============================================================
+Name of Artifact  : Staff Class
+Brief Description : Holds all the date for the staff. The cons-
+					tructor makes the object using the uniqueID
+					sent it. All other methods are set/get
+					functions
+Coder Name        : Emanuel
+Date              : 08/07/2025
+===============================================================
+*/
+
+
 class staff {
 private:
 	int staffID;
@@ -48,6 +61,23 @@ public:
 };
 
 
+
+/*
+===============================================================
+Name of Artifact  : Staff Controller Class
+Brief Description : Holds all the staff in a vector and a unique
+					ID that is kept track of. The set and get
+					functions allow changes for any staff. The
+					addstaff takes care of increasing the unique
+					ID to keep this number unique.
+Coder Name        : Emanuel
+Date              : 08/07/2025
+===============================================================
+*/
+
+
+
+
 class Staff_Controller_Class{
 private:
 	int uniqueID = 0;
@@ -72,12 +102,12 @@ public:
 	void setUniqueID(int currID) { uniqueID = currID; }
 	void setStaffList(vector<staff> newStaffList) { staffList = newStaffList; }
 	int getUniqueID() { return uniqueID; }
-	bool hasManager();
+	bool hasManager();                                                          // Returns true if there is at least one manager in staff
 
 
 	
 	// Helping Functions
-	bool usernameUnique(string username) {
+	bool usernameUnique(string username) {                                     // Returns true if this username has not been used before
 		for (auto& person : staffList) {
 			if (username == person.getUsername())
 				return false;
@@ -86,8 +116,8 @@ public:
 	}
 
 	// Get Functions
-	vector<staff> getStaffList() { return staffList; }
-	staff getSingleStaff(int targetID) { staff copy = *getStaffPointer(targetID); return copy; }
-	staff* getStaffPointer(int targetID);
+	vector<staff> getStaffList() { return staffList; }                                             // Returns a copy of the full staff list
+	staff getSingleStaff(int targetID) { staff copy = *getStaffPointer(targetID); return copy; }   // Returns a copy of a single staff object
+	staff* getStaffPointer(int targetID);														   // Returns the staff address(&) by ID
 };
 
