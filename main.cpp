@@ -1,3 +1,14 @@
+/*
+===============================================================
+Name of Artifact  : Main.cpp
+Brief Description : Main file that serves as the entry point to 
+                    the program's execution. Communicates with 
+                    the User Interface class
+Coder Name        : Arya, Emannuel 
+Date              : 08/07/2025
+===============================================================
+*/
+
 #include <iostream>
 #include <string>
 #include "User_Interface.h"
@@ -5,27 +16,28 @@
 
 using namespace std;
 
-// testing this here this is better idk 
-//hello 
+
 int main()
 {
     User_Interface mainUI; 
     while (true) {  
-        mainUI.cls();
+        mainUI.cls(); //.cls clears the terminal to make it more readable
+
         //Ask to see what type of user is using the application
-        mainUI.line();
+        mainUI.line(); 
         cout << "1. Customer" << endl;
         cout << "2. Staff" << endl;
         mainUI.line();
         cout << "> ";
         
 
-        string tempString;
+        string tempString;//temporary string variable to hold user input
         int tempInt;
         getline(cin, tempString);
         
          //if user did not input value integer it will run through the loop again
-        if (!mainUI.safeConvertToInt(tempString, tempInt)) {
+        if (!mainUI.safeConvertToInt(tempString, tempInt))//By using the "convert to" function, we feel that it is easier to store inputed values into variables.
+        { 
             continue;
         }
         if (tempInt <= 0 || tempInt >= 4)
