@@ -1,6 +1,19 @@
+/*
+===============================================================
+Name of Artifact  : User Interface Class.cpp
+Brief Description : This class handles the implementation of the 
+                    methods defined in the User_Interface.h file
+Coder Name        : Richard, Emannuel, Arya
+Date              : 08/07/2025
+===============================================================
+*/
+
+
+
 #include "User_Interface.h"
 
-//This function can be used for input validation by the user so we dont have to check the variables every single time
+//This function can be used for input validation by the user so we dont have to check the variables every single time. 
+//Just to make sure the user inputted a valid number
 int User_Interface::getUserInput(string menu, int maxOptions) { 
     string tempString;
     int tempInt = -1;
@@ -26,7 +39,7 @@ int User_Interface::getUserInput(string menu, int maxOptions) {
 }
 
 
-
+//Function that handles the UI for the staff
 void User_Interface::staffUI() {
     while (true) {
         cls();
@@ -54,7 +67,7 @@ void User_Interface::staffUI() {
     }
 }
 
-
+//Function that handles the UI for the manager
 void User_Interface::managerUI() {
     while (true) {
         cls();
@@ -102,10 +115,12 @@ void User_Interface::managerUI() {
 
 void User_Interface::displayInventory(){ //displays inventorty of all the speicies 
     cls();
+    //Check to see if there are any plants for sale
     if (inventory.getSpeciesList().size() == 0) {
         cout << "There are currently no plants for sale." << endl;
         return;
     }
+
     for (auto& plant : inventory.getSpeciesList()) {
         line();
         cout << "Name: " << plant.getName() << endl;
@@ -120,10 +135,11 @@ void User_Interface::displayInventory(){ //displays inventorty of all the speici
 }
 
 
+//Function used to add species if the user selects this option
 void User_Interface::addSpecies(){
     cls();
     string name, enviornment, season, description;
-    int careLevel; //1-5
+    int careLevel; //1-5 
     int quantity;
     double price;
 
@@ -143,7 +159,7 @@ void User_Interface::addSpecies(){
 
 
     careLevel = -1;
-    while (careLevel == -1) {
+    while (careLevel == -1) {//Input Validation
         cout << "Enter the Care Level (1-5) for the species: ";
         getline(cin, tempString);
         if (!safeConvertToInt(tempString, careLevel)) {
@@ -157,7 +173,7 @@ void User_Interface::addSpecies(){
     }
 
     quantity = -1;
-    while(quantity == -1){
+    while(quantity == -1){//Input Validation
         cout<< "Enter the quantity: ";
         getline(cin, tempString);
         if(!safeConvertToInt(tempString, quantity))
@@ -173,7 +189,7 @@ void User_Interface::addSpecies(){
     }
 
     price = -1.00;
-    while(price == -1.00)
+    while(price == -1.00)//Input Validation
     {
         cout<< "Enter the Price for the Plant: ";
         getline(cin, tempString);
@@ -192,17 +208,17 @@ void User_Interface::addSpecies(){
     inventory.addSpecies(name, season, enviornment, description, careLevel, quantity, price);
 }
 
-
+//Function used to remove a plant species 
 void User_Interface::removeSpecies() {
 
-    if (inventory.getSpeciesList().empty()) {
+    if (inventory.getSpeciesList().empty()) { 
         cout << "There are currently no species in inventory." << endl;
         return;
     }
 
     string tempString;
     int tempInt = -1;
-    while (tempInt == -1) {
+    while (tempInt == -1) {//Input Validation
         cls();
         line();
         for (auto& plant : inventory.getSpeciesList()) {
@@ -238,7 +254,7 @@ void User_Interface::removeSpecies() {
     cout << "This species has been removed." << endl;
 }
 
-
+//Function used to add a staff member
 void User_Interface::addStaff() {
     // workers.usernameUnique() = false when username is already used, true when username is avaiable
     cls();
@@ -259,7 +275,7 @@ void User_Interface::addStaff() {
 	cout << "Enter email: ";
 	getline(cin, email);
 
-    while (!validUsername) {
+    while (!validUsername) {//Input Validation
         cout << "Enter username: ";
         getline(cin, username);
 
@@ -273,7 +289,7 @@ void User_Interface::addStaff() {
 	getline(cin, password);
 
     salary = -1;
-    while (salary == -1) {
+    while (salary == -1) {//Input Validation
         cout << "Enter salary: ";
         getline(cin, tempString);
         if (!safeConvertToDouble(tempString, salary) || salary <= 0) {
@@ -282,7 +298,7 @@ void User_Interface::addStaff() {
     }
 
     tempString = "";
-    while (tempString == "") {
+    while (tempString == "") {//Input Validation
         cout << "Is this staff a manager? Enter 'y' or 'n': ";
         getline(cin, tempString);
         if (tempString == "y" || tempString == "Y")
@@ -302,6 +318,7 @@ void User_Interface::addStaff() {
 }
 
 
+//Function used to remove a staff member
 void User_Interface::removeStaff() {
     if (workers.getStaffList().empty()) {
         cout << "There are currently no staff." << endl;
@@ -311,7 +328,7 @@ void User_Interface::removeStaff() {
 
     string tempString;
     int tempInt = -1;
-    while (tempInt == -1) {
+    while (tempInt == -1) {//Input Validation
         cls();
         line();
         for (auto& person : workers.getStaffList()) {
@@ -348,7 +365,7 @@ void User_Interface::removeStaff() {
     cout << "This staff has been removed." << endl; 
 }
 
-
+//Function used to edit the data of a staff member
 void User_Interface::editStaff() {
     cls();
 
@@ -394,7 +411,7 @@ void User_Interface::editStaff() {
     staff targetStaff = workers.getSingleStaff(tempInt);
 
     int userChoice = -1;
-    while (userChoice == -1) {
+    while (userChoice == -1) {//Input Validation
         cls();
         line();
         // Showing the staff that was selected
@@ -420,8 +437,8 @@ void User_Interface::editStaff() {
             return;
     }
 
-    bool validUsername = false;
-    double salary = -1;
+    bool validUsername = false; //variable to check if the username matches an already existing one
+    double salary = -1; 
     switch (userChoice) {
     case 1:
         cout << "Enter a name: "; 
@@ -478,6 +495,8 @@ void User_Interface::editStaff() {
 }
 
 
+//Function used to add a sale
+//
 void User_Interface::addSale() {
 
     if (inventory.getSpeciesList().size() == 0) {
@@ -505,7 +524,7 @@ void User_Interface::addSale() {
     string tempString;
 
     int speciesID = -1;
-    while(speciesID == -1)
+    while(speciesID == -1)//Input Validation
     {
         cout << "Enter the Species ID or type 'c' to cancel: ";
         getline(cin, tempString);
@@ -529,7 +548,7 @@ void User_Interface::addSale() {
 
     
     int quantity = -1; 
-    while(quantity == -1)
+    while(quantity == -1)//Input Validation
     {
         cout << "Enter the quantity sold: "; 
         getline(cin, tempString);
@@ -547,7 +566,7 @@ void User_Interface::addSale() {
 
     cout << "\n\nChoose Returning Customer" << endl;
     int customerID = -1;
-    while(customerID == -1)
+    while(customerID == -1)//Input Validation
     {
         line();
         if (clients.getCustomerList().size() == 0) {
@@ -592,7 +611,7 @@ void User_Interface::addSale() {
     
     cout << endl;
     int tempInt = -1;
-    while(tempInt == -1)
+    while(tempInt == -1)//Input Validation
     {
         cout << "Cash Transaction [1], Debit [2], or Credit [3]? ";
         getline(cin, tempString);
@@ -617,7 +636,7 @@ void User_Interface::addSale() {
     
 
         int day = -1;
-        while(day == -1)
+        while(day == -1)//Input Validation
     {
             cout << "Enter the day: ";
             getline(cin, tempString);
@@ -652,7 +671,7 @@ void User_Interface::addSale() {
 
 
         int year = -1;
-        while(year == -1)
+        while(year == -1)//Input Validation
     {
             cout << "Enter the year: ";
             getline(cin, tempString);
@@ -668,8 +687,10 @@ void User_Interface::addSale() {
         }
     }
 
+    //Set the sales date to todays date
     salesDate.setTo(month,day,year);
 
+    //Calculates the total amount of the sale based on the quantity that was bought 
     totalAmount = targetSpieces.getPrice() * quantity;
 
     
@@ -685,6 +706,8 @@ void User_Interface::addSale() {
 }
 
 
+
+//Function used to remove a sale
 void User_Interface::removeSale() {
 
     if (transactions.getSalesList().empty()) {
@@ -694,7 +717,7 @@ void User_Interface::removeSale() {
 
     string tempString;
     int tempInt = -1;
-    while (tempInt == -1) {
+    while (tempInt == -1) {//Input Validation
         cls();
         line();
         for (auto& transaction : transactions.getSalesList()) {
@@ -732,6 +755,8 @@ void User_Interface::removeSale() {
 }
 
 
+//Function used by manager to generate a sales report 
+//
 void User_Interface::generateReport() {
 
     if (transactions.getSalesList().empty()) {
@@ -747,22 +772,24 @@ void User_Interface::generateReport() {
 
     date start, end;
     switch (userChoice) {
-    case 1:  // User wants the day
+    case 1:  // User wants the report for the day
         break; // start and end are init. at today so they are ready to go
-    case 2: // User wants the month
+    case 2: // User wants the report for the month
         start.setDay(1);
         end.setDay(31);
         break;
-    case 3: // User wants the year
+    case 3: // User wants the report for the year
         start.setMonth(1);
         start.setDay(1);
         end.setMonth(12);
         end.setDay(31);
     }
 
+
+
     cls();
     line();
-    double runningTotal = 0;
+    double runningTotal = 0; //Loop that generates the report
     for (auto& transaction : transactions.getReport(start, end)) {
         cout << "{" << setw(3) << setfill('0') << transaction.getSalesID() << "} " << setfill(' ');
         cout << "Customer: " << clients.getCustomer(transaction.getCustomerID()).getName()                   << endl;
@@ -771,7 +798,8 @@ void User_Interface::generateReport() {
         cout << string(6, ' ') << "Species : " << transaction.getSpeciesIDSold()                             << endl;
         cout << string(6, ' ') << "Payment : " << transaction.getPaymentType()                               << endl;
         cout << string(6, ' ') << "Total   : " << fixed << setprecision(2) << transaction.getTotalAmount()   << endl << endl;
-
+        
+        //calculating the total revenue
         runningTotal += transaction.getTotalAmount();
     }
     line();
@@ -785,6 +813,7 @@ void User_Interface::generateReport() {
 }
 
 
+//Function that checks the username and passowrd entered in
 int User_Interface::checkCredentials(string usernameAttempt, string passwordAttempt) {
 
     for (auto& person : workers.getStaffList()) {         // Looking through all the workers
@@ -800,6 +829,7 @@ int User_Interface::checkCredentials(string usernameAttempt, string passwordAtte
 }
 
 
+//Function used to add a customer
 int User_Interface::addCustomer() {
     string newName, newAddress;
 
@@ -813,18 +843,20 @@ int User_Interface::addCustomer() {
 }
 
 
+
+//Funciton that clears the terminal to make it more readable 
 void User_Interface::cls() {
     cout << string(30, '\n') << endl;
 }
 
-
+//Function that pauses throughout the program to allow for smoother user experience
 void User_Interface::pause() {
     cout << "Press enter to conintue." << endl; 
     string tempString; 
     getline(cin, tempString);
 }
 
-
+//Function that converts the inputed string to integer
 bool User_Interface::safeConvertToInt(string &targetString, int &targetInt) {
     try { //try catch block will catch any value that cannot be converted to integer 
         targetInt = stoi(targetString);
@@ -836,6 +868,7 @@ bool User_Interface::safeConvertToInt(string &targetString, int &targetInt) {
 }
 
 
+//Function that converts the inputed string to a double
 bool User_Interface::safeConvertToDouble(string& targetString, double& targetInt) {
     try { //try catch block will catch any value that cannot be converted to integer 
         targetInt = stod(targetString);
@@ -847,11 +880,14 @@ bool User_Interface::safeConvertToDouble(string& targetString, double& targetInt
 }
 
 
+
+//function that outputs a line 
 void User_Interface::line() { 
     cout << "----------------------------------" << endl; 
 }
 
 
+//Function that setrs the username of a staff member
 void User_Interface::setUser(string username) {
     for (auto& person : workers.getStaffList()) {
         if (person.getUsername() == username)
@@ -859,7 +895,8 @@ void User_Interface::setUser(string username) {
     }
 }
 
-
+//funciton that creates a manager, if no data for a manager detected it automatically defaults 
+// to creating one 
 void User_Interface::makeManager() {
     string name, address, phone, email, username, password, tempString;
     double salary;
@@ -911,7 +948,7 @@ void User_Interface::makeManager() {
 }
 
 
-
+//Function that reads data from the files
 User_Interface::User_Interface() {
     // Making all the files if they do not exist already
     ifstream testingStaff(staffFile);
@@ -1110,7 +1147,7 @@ User_Interface::User_Interface() {
     }
 }
 
-
+//Function that saves data into files 
 void User_Interface::save(){
     // We assume that files were created since we already went through the constructor
 

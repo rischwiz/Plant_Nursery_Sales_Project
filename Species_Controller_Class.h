@@ -1,3 +1,13 @@
+/*
+===============================================================
+Name of Artifact  : Species Class
+Brief Description : holds all the data and methods for the plant
+					species object.
+Coder Name        : John
+Date              : 08/07/2025
+===============================================================
+*/
+
 #pragma once
 #include <iostream>
 #include <string>
@@ -8,14 +18,14 @@ using namespace std;
 class species
 {
 private:
-	int speciesID;
-	string name;
-	string season;
-	string environment;
-	string description;
-	int careLevel;
-	int quantity;
-	double price;
+	int speciesID;//Unique ID of species
+	string name; //Name of the plant species
+	string season; //Season that the plant thrives in
+	string environment; //Environment the plant grows in
+	string description; //Brief Description of the plant
+	int careLevel; //Ranging from 1-5, how much cae and attention is needed
+	int quantity; //quantity that the store holds of the plant
+	double price; //Price of the plant
 
 public:
 	//Constructor
@@ -99,6 +109,19 @@ public:
 		return price;
 	}
 };
+
+/*
+===============================================================
+Name of Artifact  : Species Controller Class
+Brief Description : Contains any algorithms needed that deals 
+					with the speacies data. Performs various
+					operations on the species data
+Coder Name        : John
+Date              : 08/07/2025
+===============================================================
+*/
+
+
 
 class Species_Controller_Class{
 private:
