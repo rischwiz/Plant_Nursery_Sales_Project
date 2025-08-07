@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Date class to grab the current date and time
 struct date {
 private:
 	int day = 0;
