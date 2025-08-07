@@ -1,3 +1,12 @@
+/*
+===============================================================
+Name of Artifact  : Sales_controller_class.cpp
+Brief Description : Implements the functions initialized in
+					the .h file.
+Coder Name        : Richard
+Date              : 08/07/2025
+===============================================================
+*/
 #include "Sales_Controller_Class.h"
 
 Sales* Sales_Controller_Class::getSalePointer(int targetID) {
@@ -11,13 +20,14 @@ Sales* Sales_Controller_Class::getSalePointer(int targetID) {
 	return returningSale;
 }
 
+//Function that is used to document a new sale
 void Sales_Controller_Class::addSale(int customerID, int staffID, string paymentType, date salesDate, double totalAmount, int speciesIDSold) {
 	uniqueID++;
 	Sales newSale(uniqueID, customerID, staffID, paymentType, salesDate, totalAmount, speciesIDSold);
 	salesList.push_back(newSale);
 }
 
-
+//Function that is used to remove a sale
 void Sales_Controller_Class::removeSale(int targetID) {
 	int currentIndex = 0;
 	for (auto& current : salesList) {
@@ -30,6 +40,9 @@ void Sales_Controller_Class::removeSale(int targetID) {
 	
 }
 
+//Functions that are used to edit certain data in a sale
+//
+//
 void Sales_Controller_Class::editCustomerID(int targetID, int newCustomerID) {
 	Sales* targetSale = getSalePointer(targetID);
 	targetSale->setCustomerID(newCustomerID);
@@ -61,6 +74,7 @@ void Sales_Controller_Class::editSpeciesIDSold(int targetID, int newSpeciesIDSol
 }
 
 
+//function that is used to get a report from a sales between certain dates
 
 
 vector<Sales> Sales_Controller_Class::getReport(date start, date end){
