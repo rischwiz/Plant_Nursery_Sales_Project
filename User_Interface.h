@@ -17,7 +17,7 @@ Name of Artifact  : User Interface Class
 Brief Description : This class is the user interface for the application. 
                     It handles all user interactions, including displaying menus, getting user input, 
                     and calling the appropriate functions from the controllers.
-Coder Name        : Richard
+Coder Name        : Richard, Emannuel, Arya
 Date              : 08/05/2025
 ===============================================================
 */
