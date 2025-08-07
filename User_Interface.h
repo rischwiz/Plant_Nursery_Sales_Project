@@ -11,21 +11,31 @@
 
 using namespace std;
 
-
+/*
+===============================================================
+Name of Artifact  : User Interface Class
+Brief Description : This class is the user interface for the application. 
+                    It handles all user interactions, including displaying menus, getting user input, 
+                    and calling the appropriate functions from the controllers.
+Coder Name        : Richard
+Date              : 08/05/2025
+===============================================================
+*/
 class User_Interface
 {
+
 private:
-    int getUserInput(string menu, int maxOptions); 
-    Staff_Controller_Class    workers;
-    Species_Controller_Class  inventory;
-    Sales_Controller_Class    transactions;
-    Customer_Controller_Class clients;
-    const string staffFile = "staff.txt";
-    const string speciesFile = "species.txt";
-    const string salesFile = "sales.txt";
-    const string customersFile = "customers.txt";
+	int getUserInput(string menu, int maxOptions); // Function to get user input and validate it against the menu options
+	Staff_Controller_Class    workers; // Declares an instance of the Staff_Controller_Class
+	Species_Controller_Class  inventory; // Declares an instance of the Species_Controller_Class
+	Sales_Controller_Class    transactions; // Declares an instance of the Sales_Controller_Class
+	Customer_Controller_Class clients; // Declares an instance of the Customer_Controller_Class
+	const string staffFile = "staff.txt"; // Constants for staff file name
+	const string speciesFile = "species.txt"; // Constants for species file name
+	const string salesFile = "sales.txt"; // Constants for sales file name
+	const string customersFile = "customers.txt"; // Constants for customers file name
 
-
+	// Menu Strings
     string managerMenu =
         "           Manager Menu           \n"
         "----------------------------------\n"
