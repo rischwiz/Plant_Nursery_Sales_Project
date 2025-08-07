@@ -1,6 +1,19 @@
 #include "Cutomer_Controller_Class.h"
 #include <iostream> 
 
+
+/*
+===============================================================
+Name of Artifact  : Customer_Controller_Class.cpp 
+Brief Description : Implements the functions that were defined
+                    in the customer_controller_class.h
+Coder Name        : Juhi
+Date              : 08/07/2025
+===============================================================
+*/
+
+
+
 using namespace std; 
 
 //Customer implementation
@@ -40,7 +53,6 @@ int Customer_Controller_Class::addCustomer(string newName, string newAddress) {
     customerList.push_back(newCustomer);
     return uniqueID;
 }
-
 
 void Customer_Controller_Class::removeCustomer(int targetID) {
     for (auto it = customerList.begin(); it != customerList.end(); ++it) { // looping through all the csutomer through iter. pointer
