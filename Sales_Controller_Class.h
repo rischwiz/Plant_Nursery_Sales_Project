@@ -70,10 +70,10 @@ public:
 
 /*
 ========================================================================================
-Name of Artifact: Sales Class
-Brief Description: The Sales class is used to represent a sale transaction in the system. 
-Coder Name: Richard Schweizer
-Date: 08/05/2025
+Name of Artifact	: Sales Class
+Brief Description	: The Sales class is used to represent a sale transaction in the system. 
+Coder Name			: Richard Schweizer
+Date				: 08/05/2025
 =========================================================================================
 */
 class Sales {
@@ -111,10 +111,10 @@ public:
 
 /*
 =========================================================================================
-Name of Artifact: Sales Controller Class
-Brief Description: The Sales_Controller_Class is responsible for managing sales transactions in the system.
-Coder Name: Richard Schweizer
-Date: 08/05/2025
+Name of Artifact	: Sales Controller Class
+Brief Description	: The Sales_Controller_Class is responsible for managing sales transactions in the system.
+Coder Name			: Richard Schweizer
+Date				: 08/05/2025
 ==========================================================================================
 */
 class Sales_Controller_Class {
