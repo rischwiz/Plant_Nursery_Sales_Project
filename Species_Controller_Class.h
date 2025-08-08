@@ -40,6 +40,7 @@ public:
 		quantity = quantity_;
 		price = price_;
 	}
+	species() = default;
 
 	// Set Functions
 	// void setSpeciesID(int newSpeciesID)

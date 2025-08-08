@@ -137,13 +137,75 @@ void User_Interface::displayInventory(){ //displays inventorty of all the speici
 
 //Function used to add species if the user selects this option
 void User_Interface::addSpecies(){
-    cls();
+    
+    string tempString;
+    
+    // Asking user if they want to add a new species or add to the current species
+    int targetID = -1;
+    bool addingNewSpecies = false;
+    while (targetID == -1) {
+        cls();
+        line();
+        for (auto& plant : inventory.getSpeciesList()) {                                                // Printing all species saved
+            cout << plant.getSpeciesID() << " : " << plant.getName() << endl;
+        }
+        line();
+        cout << "Enter a species above to increase quantity or 'a' = add new, 'c' = cancel" << endl;    // Getting from user if they want to increase quantity or add a new one
+        cout << "> ";
+        getline(cin, tempString);
+        if (tempString == "a" || tempString == "A") {
+            addingNewSpecies = true;
+            break;
+        }
+        if (tempString == "c" || tempString == "C")
+            return;
+
+        if (!safeConvertToInt(tempString, targetID) || targetID < 0) {
+            targetID = -1;
+            continue;
+        }
+        if (inventory.getSpeciesPointer(targetID) == nullptr) {
+            targetID = -1;
+            continue;
+        }
+    }
+
+    if (!addingNewSpecies) {                                                                            // If user wanted to increase quantity
+        cls();
+        species targetSpecies = inventory.getSpecies(targetID);
+        line();
+        cout << "Name    : " << targetSpecies.getName() << endl;
+        cout << "ID      : " << targetSpecies.getSpeciesID() << endl;
+        cout << "Quantity: " << targetSpecies.getQuantity() << endl;
+        line();
+        int addingQuantity = -1;
+        while (addingQuantity == -1) {                                                                   // Get how by how much they want to increase the quantity
+            cout << "Enter a quantity to add or type 'c' to cancel." << endl;
+            cout << "> ";
+            getline(cin, tempString);
+            if (tempString == "c" || tempString == "C")
+                return;
+
+            if (!safeConvertToInt(tempString, addingQuantity) || addingQuantity <= 0) {
+                addingQuantity = -1;
+                continue;
+            }
+        }
+
+        line();
+        inventory.editSpeciesQuantity(targetID, targetSpecies.getQuantity() + addingQuantity);           // Increase the quantity
+        cout << endl << "Quantity has been updated." << endl;
+        return;
+    }
+
+
+    cls();                                                                                               // If they did not want to increase the quantity, then add a new one
     string name, enviornment, season, description;
     int careLevel; //1-5 
     int quantity;
     double price;
 
-    string tempString;
+    
 
     cout<< "Enter Plant Species Name: ";
     getline(cin, name);
@@ -792,12 +854,39 @@ void User_Interface::generateReport() {
     double runningTotal = 0; //Loop that generates the report
     for (auto& transaction : transactions.getReport(start, end)) {
         cout << "{" << setw(3) << setfill('0') << transaction.getSalesID() << "} " << setfill(' ');
-        cout << "Customer: " << clients.getCustomer(transaction.getCustomerID()).getName()                   << endl;
-        cout << string(6, ' ') << "Staff   : " << transaction.getStaffID()                                   << endl;
-        cout << string(6, ' ') << "Date    : " << transaction.getSalesDate().toString()                      << endl;
-        cout << string(6, ' ') << "Species : " << transaction.getSpeciesIDSold()                             << endl;
-        cout << string(6, ' ') << "Payment : " << transaction.getPaymentType()                               << endl;
-        cout << string(6, ' ') << "Total   : " << fixed << setprecision(2) << transaction.getTotalAmount()   << endl << endl;
+
+        
+        cout << "Customer: ";
+        if (clients.getCustomerPointer(transaction.getCustomerID()) == nullptr) {                              // If the customer is not longer in the vector, the show just the ID
+            cout << transaction.getCustomerID() << endl;                                                        
+        }                                                                                                       
+        else {                                                                                                 // If it is still in vector, show the name of customer
+            cout << clients.getCustomer(transaction.getCustomerID()).getName() << endl;                         
+        }                                                                                                       
+                                                                                                                
+        cout << string(6, ' ') << "Staff   : ";                                                                 
+        if (workers.getStaffPointer(transaction.getStaffID()) == nullptr) {                                    // If the staff is no longer in the vector, then just show the ID
+            cout << transaction.getStaffID() << endl;                                                          
+        }                                                                                                      
+        else {                                                                                                 // If it is still in the vector, show the staff name
+            cout << workers.getSingleStaff(transaction.getStaffID()).getName() << endl;                        
+        }                                                                                                      
+                                               
+        cout << string(6, ' ') << "Payment : " << transaction.getPaymentType() << endl;
+        cout << string(6, ' ') << "Date    : " << transaction.getSalesDate().toString() << endl;                              
+                                                                                                               
+        cout << string(6, ' ') << "Species : ";                                                                
+        if (inventory.getSpeciesPointer(transaction.getSpeciesIDSold()) == nullptr) {                          // If the species is no longer in the vector, then show just the ID
+            cout << transaction.getSpeciesIDSold() << endl;
+        }
+        else {                                                                                                 // If it still in the vector, show the species name AND the price per unit
+            cout << inventory.getSpecies(transaction.getSpeciesIDSold()).getName() << endl;
+            cout << string(6, ' ') << "Price   : " << inventory.getSpecies(transaction.getSpeciesIDSold()).getPrice() << endl;
+            cout << string(6, ' ') << "Quantity: " << (int)(transaction.getTotalAmount() / inventory.getSpecies(transaction.getSpeciesIDSold()).getPrice()) << endl; // Since the item is still here, we can cal. quantity
+        }                                                                                                      
+        
+       
+        cout << string(6, ' ') << "Total   : " << fixed << setprecision(2) << transaction.getTotalAmount()   << endl << endl; // -'
         
         //calculating the total revenue
         runningTotal += transaction.getTotalAmount();
@@ -1146,6 +1235,7 @@ User_Interface::User_Interface() {
         makeManager();
     }
 }
+
 
 //Function that saves data into files 
 void User_Interface::save(){

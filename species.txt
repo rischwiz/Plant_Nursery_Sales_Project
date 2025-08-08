@@ -1,1 +1,8 @@
-0
+7
+1|Rose|Spring|Garden|A classic red rose, fragrant and beautiful|3|160|4
+2|Tulip|Spring|Garden|Brightly colored tulip bulbs for early bloom|1|120|3
+3|Orchid|Summer|Indoor|Exotic orchids with delicate blooms|5|60|15
+4|Sunflower|Summer|Garden|Tall sunflowers that follow the sun|1|180|2
+5|Lavender|Summer|Garden|Fragrant lavender with calming scent|3|90|4
+6|Cactus|All Year|Indoor|Low-maintenance succulent cactus|1|200|6
+7|Daffodil|Spring|Garden|Yellow daffodils signaling early spring|1|110|2
